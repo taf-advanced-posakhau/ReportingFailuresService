@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>FAILURES TRACKING SERVER 1.0</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:ital@0;1&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: #ececec;
+                /* Yellow */
+            }
+
+            .new-line {
+                display: block; /* Forces elements onto new lines */                
+            }
+         
+              .mainHeader {
+                padding-left: 200px;               
+                margin-top: 50px;
+                margin-left: auto;
+                margin-right: auto;
+                font-family: "PT Sans Narrow", sans-serif;
+                font-weight: 700;
+                font-size: 28pt;
+                font-style: normal;
+                color:#292A2B;
+                display: block;
+                /* Forces elements onto new lines */
+            }
+
+            .entry {
+                padding-left: 30px;
+                margin-top: 1px;
+                margin-left: auto;
+                margin-right: auto;
+                font-family: "PT Sans Narrow", sans-serif;
+                font-weight: 500;
+                font-size: 13pt;
+                font-style: normal;
+                color:#6F1010;
+                display: block;
+               
+                /* Forces elements onto new lines */
+            }
+
+            .secondaryHeader {
+                padding-left: 750px;
+                padding-top: 1px;
+                margin-top: 1px;
+                margin-left: auto;
+                margin-right: auto;
+                font-family: "PT Sans Narrow", sans-serif;
+                font-weight: 600;
+                font-style: normal;
+                font-size: 22pt;
+                color:#EE2E2E;
+                border:1px;
+                border-style: solid;
+                border-color: red;
+                background-color: #FDD4D4;
+                display: block;
+                /* Forces elements onto new lines */
+            }
+
+            .listFailedEntries {
+                padding-left: 550px; 
+                font-family: "PT Sans Narrow", sans-serif;
+                font-weight: 500;
+                font-size: 14pt;
+                font-style: normal;
+                color:#641919;
+                display: block; /* Forces elements onto new lines */
+              }
+            
+              .image-container {
+               
+                width: 80px; /* Set the width of the container */
+                height: 80px; /* Set the height of the container */               
+                // text-align: center; /* Center align the content */
+                // margin-left: auto;
+                // margin-right: auto;
+                // display: block;
+            }
+
+
+
+
+        </style>
+    </head>
+
+    <body>
+        <div class="mainHeader">
+            <h1> AQA DOCS TEAM ONLINE FAILURES REPORTER</h1>           
+        </div>
+        
+        <div id="FailureSection"><br><span class="secondaryHeader">Failures tracked : 7</span><br></div><br>
+
+        <script>
+
+        let string = "./features/templates/create/cr_01.feature,./features/templates/create/cr_01.feature,./features/templates/create/cr_01.feature,./features/templates/create/cr_01.feature,./features/templates/create/cr_01.feature,./features/templates/create/cr_01.feature,./features/templates/create/cr_01.feature";
+        let arrayInner = string.split(",");
+
+        let container = document.getElementById('FailureSection');
+        for (let i=0;i<arrayInner.length;i++) {            
+            var pElement = document.querySelector('div');             
+            var newSpan = document.createElement('span');   
+            newSpan.classList.add('entry');         
+            newSpan.textContent = arrayInner[i];            
+            pElement.appendChild(newSpan);
+            container.innerHTML += '<br>';             
+        }        
+                
+            function updateCounter() {                
+                fetch('/updatePage', { method: 'GET' })
+                    .then(response => response.json())
+                    .then(data => {})
+                    .catch(error => console.error('Error updating counter:', error));                     
+            }
+       
+            setInterval(() => {
+                updateCounter();  
+                window.location.reload();             
+            }, 1500);
+
+        </script>
+    </body>
+
+        </html>
